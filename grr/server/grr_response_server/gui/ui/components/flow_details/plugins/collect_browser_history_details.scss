@@ -1,0 +1,9 @@
+@use './base';
+
+.row-list {
+  margin-bottom: 0.15em;
+
+  .results-in-progress {
+    padding: 0.5em 24px;
+  }
+}

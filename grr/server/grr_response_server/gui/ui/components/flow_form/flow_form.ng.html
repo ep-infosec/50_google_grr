@@ -1,0 +1,32 @@
+<h1>Collection</h1>
+
+<app-flow-picker></app-flow-picker>
+
+<form autocomplete="off" spellcheck="false" #form [appSubmitOnMetaEnter]="true">
+  <flow-args-form
+    [flowDescriptor]="selectedFD$ | async"
+    [autofocus]="true"
+  ></flow-args-form>
+
+  <mat-error *ngIf="error$ | async as error">{{error}}</mat-error>
+
+  <div *ngIf="selectedFD$ | async">
+    <button
+      mat-flat-button
+      color="primary"
+      type="submit"
+      [disabled]="disabled$ | async"
+      class="progress-spinner-button"
+      [matTooltip]="'CTRL/⌘ + ENTER'"
+    >
+      <mat-spinner
+        *ngIf="requestInProgress$ | async"
+        diameter="24"
+      ></mat-spinner>
+      {{ (hasAccess$ | async) ? "Start" : "Schedule" }}
+    </button>
+    <span *ngIf="(hasAccess$ | async) !== true" class="mat-small">
+      Scheduled flows will be started automatically when approval is granted.
+    </span>
+  </div>
+</form>

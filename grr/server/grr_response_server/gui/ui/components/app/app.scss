@@ -1,0 +1,85 @@
+@use "@angular/material" as mat;
+@use "../../material-theme" as c;
+@use "../../main" as main;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.toolbar {
+  box-sizing: border-box;
+  height: main.$toolbar-height;
+  box-shadow: 0px 0px 4px mat.get-color-from-palette(c.$background, shadow);
+  border-bottom: 1px solid
+    mat.get-color-from-palette(c.$foreground, divider-light);
+
+  .brand {
+    align-self: stretch;
+
+    .brand-wrapper {
+      display: inline-flex;
+      flex-direction: row;
+      align-items: center;
+      height: 100%;
+
+      .logo {
+        height: 38px;
+
+        img {
+          width: 38px;
+          margin-right: 0.5em;
+        }
+      }
+    }
+
+    .title {
+      color: mat.get-color-from-palette(c.$foreground, logo);
+      font-size: 24px;
+      font-family: c.$google-sans-display-family;
+      margin-top: 2px;
+    }
+
+    .badge {
+      border-radius: 5px;
+      border: 1px solid mat.get-color-from-palette(c.$foreground, divider-light);
+      color: mat.get-color-from-palette(c.$foreground, logo);
+      display: inline-block;
+      font-size: 10px;
+      font-weight: bold;
+      line-height: 1;
+      margin-left: 1em;
+      padding: 4px;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-tab-nav-bar {
+    border-bottom: none;
+    align-self: flex-end;
+  }
+}
+
+mat-drawer-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  // Angular inserts a .mat-drawer-content element. We need to override its
+  // style in order to allow all children to fill the parent height.
+  // See: https://github.com/angular/components/issues/13983
+  ::ng-deep .mat-drawer-content {
+    flex: 1;
+    display: flex;
+  }
+
+  ::ng-deep .mat-drawer {
+    max-width: 90vw;
+  }
+}

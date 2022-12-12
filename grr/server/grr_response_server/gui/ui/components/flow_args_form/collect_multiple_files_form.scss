@@ -1,0 +1,33 @@
+@use '@angular/material' as mat;
+@use '../../material-theme' as c;
+
+.conditions {
+  .title {
+    margin-top: 1.5em;
+    margin-bottom: 0.75em;
+    font-family: c.$google-sans-display-family;
+    color: mat.get-color-from-palette(c.$foreground, text);
+  }
+
+  .buttons {
+    display: flex;
+    column-gap: 1em;
+  }
+}
+
+.mat-error {
+  font-size: 85%;
+}
+
+mat-error {
+  margin-top: 0.5em;
+}
+
+.add-path-row {
+  display: flex;
+  flex-direction: row;
+
+  .error {
+    flex-grow: 1;
+  }
+}

@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@use '../../material-theme' as c;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  row-gap: c.$page-spacing;
+  padding-bottom: 3 * c.$page-spacing;
+}
+
+.client-start-flow {
+  margin: 0 auto;
+  max-width: c.$centered-content-max-width;
+  width: c.$centered-content-width;
+  box-sizing: border-box;
+}
+
+.client-flows {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: c.$page-spacing;
+}

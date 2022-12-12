@@ -1,0 +1,31 @@
+@use '@angular/material' as mat;
+@use '../../material-theme' as c;
+
+:host {
+  display: block;
+
+  .mat-form-field {
+    width: 100%;
+
+    .mat-form-field-wrapper {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    mat-icon {
+      margin-right: 0.5em;
+      color: mat.get-color-from-palette(c.$foreground, text-light);
+    }
+  }
+}
+
+.result-row {
+  display: flex;
+  align-items: center;
+
+  online-chip {
+    margin-left: 0.5em;
+    /** Prevent online chip from changing cursor and hover effect. */
+    pointer-events: none;
+  }
+}

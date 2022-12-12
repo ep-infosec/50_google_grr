@@ -1,0 +1,18 @@
+<mat-card class="mat-card-outlined client-start-flow">
+  <flow-form></flow-form>
+</mat-card>
+<div class="client-flows">
+  <scheduled-flow-list
+    [creator]="(currentUser$ | async)?.name"
+    [clientId]="(client$ | async)?.clientId"
+    class="centered-content"
+  ></scheduled-flow-list>
+
+  <approval *ngIf="showApprovalView$ | async"
+            [latestApproval]="latestApproval$ | async"
+            (approvalParams)="requestApproval($event)"
+            class="centered-content"></approval>
+
+  <flow-list *ngIf="hasAccess$ | async"
+             class="centered-content"></flow-list>
+</div>

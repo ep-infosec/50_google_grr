@@ -1,0 +1,33 @@
+<client-overview [collapsed]="filesActive.isActive"></client-overview>
+
+<div>
+  <!-- Wrapper <div> to prevent row-gap between nav and divider. -->
+  <nav mat-tab-nav-bar>
+    <a
+      mat-tab-link
+      [routerLink]="['flows']"
+      routerLinkActive
+      #flowsActive="routerLinkActive"
+      [active]="flowsActive.isActive"
+      [disabled]="!(hasAccess$ | async)"
+    >
+      All flows
+    </a>
+
+    <a
+      class="collected-files-tab"
+      mat-tab-link
+      [routerLink]="['files']"
+      routerLinkActive
+      #filesActive="routerLinkActive"
+      [active]="filesActive.isActive"
+      [disabled]="!(hasAccess$ | async)"
+    >
+      Browse collected files & metadata
+    </a>
+  </nav>
+
+  <div class="divider"></div>
+</div>
+
+<router-outlet></router-outlet>

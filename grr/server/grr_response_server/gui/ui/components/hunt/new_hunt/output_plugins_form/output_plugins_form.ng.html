@@ -1,0 +1,39 @@
+<div class="header" (click)="showContent($event)">
+  Export Data
+  <button
+    id="output-plugins-form-toggle"
+    mat-icon-button
+    class="corner-button"
+    (click)="toggleContent($event)"
+    aria-label="View/hide export data form (output plugins)"
+  >
+    <mat-icon>{{ hideContent ? "expand_less" : "expand_more" }}</mat-icon>
+  </button>
+</div>
+
+<div class="content">
+  <form autocomplete="off" spellcheck="false" [formGroup]="outputPluginsForm">
+    <div class="plugins-container">
+      <div
+        *ngFor="let plugin of plugins.controls; let pluginIndex = index"
+        [ngSwitch]="plugin.get('type')?.value"
+        [formGroup]="pluginGroup(pluginIndex)"
+        class="plugin-content"
+      >
+        <button
+          mat-icon-button
+          [id]="'remove_plugin_' + pluginIndex"
+          class="remove-button"
+          (click)="removePlugin(pluginIndex)"
+          type="button"
+          [attr.aria-label]="removePlugin"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+        <!-- TODO: Add forms for each Output Plugin. -->
+
+      </div>
+    </div>
+  </form>
+</div>
+

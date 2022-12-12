@@ -1,0 +1,18 @@
+<ng-container>
+  <mat-form-field appearance="outline" class="w100">
+    <mat-label>Root directory</mat-label>
+    <input
+      matInput
+      placeholder="/"
+      [formControl]="controls.root"
+      name="root"
+      class="monospace"
+      autocomplete="off"
+    />
+    <mat-hint>
+      <app-literal-path-glob-expression-warning
+        [path]="controls.root.value"
+      ></app-literal-path-glob-expression-warning>
+    </mat-hint>
+  </mat-form-field>
+</ng-container>

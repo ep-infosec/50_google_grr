@@ -1,0 +1,397 @@
+@use "@angular/material" as mat;
+@use "./material-theme" as c;
+
+@import 'material-theme';
+
+// Initialize Angular material theme.
+// Include non-theme styles for core.
+@include mat.all-component-typographies($custom-typography);
+@include mat.core();
+// Include all theme-styles for the components based on the current theme.
+@include mat.all-component-themes($theme);
+
+$toolbar-height: 64px;
+
+app,
+body,
+html {
+  display: block;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+.flow-details-summary-actions {
+  position: absolute;
+  right: 86px;
+  top: 1.6em;
+  height: 3em;
+}
+
+.monospace,
+.mat-input-element.monospace {
+  font-family: 'Roboto Mono', monospace;
+}
+
+// Flow search results appear on a CDK overlay layer, so their styling has
+// to be defined globally.
+.flow-search-results {
+  .mat-optgroup-label {
+    background-color: mat.get-color-from-palette(
+      $background,
+      darker-background
+    );
+    line-height: 24px;
+    height: 24px;
+  }
+
+  .mat-optgroup .mat-option:not(.mat-option-multiple) {
+    padding-left: 16px;
+    height: 50px;
+    line-height: 24px;
+  }
+}
+
+.mat-error {
+  font-family: $google-sans-display-family;
+}
+
+.progress-spinner-button .mat-progress-spinner,
+.progress-spinner-button mat-spinner {
+  display: inline-block;
+  margin-right: $button-horizontal-padding;
+}
+
+.mat-progress-bar.mat-success {
+  .mat-progress-bar-fill::after {
+    background-color: mat.get-color-from-palette(c.$foreground, success);
+  }
+  .mat-progress-bar-background {
+    fill: mat.get-color-from-palette(c.$foreground, success);
+  }
+}
+
+.clickable {
+  cursor: pointer;
+
+  &:hover {
+    background-color: mat.get-color-from-palette(c.$primary, 100, 0.15);
+  }
+}
+
+.mat-card.mat-card-outlined {
+  border: 1px solid #d8dade;
+  box-shadow: none;
+  border-radius: 8px;
+}
+
+a:any-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.text-link:any-link,
+a.text-link-hover:hover {
+  color: mat.get-color-from-palette(c.$foreground, link);
+  text-decoration: underline;
+}
+
+.button-group {
+  white-space: nowrap;
+  display: flex;
+
+  & > .mat-stroked-button,
+  & > .mat-button-base {
+    &:first-child:not(:last-child) {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:not(:first-child) {
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &.dropdown-button {
+      padding-left: 0;
+      padding-right: 0;
+      min-width: 24px;
+    }
+  }
+}
+
+.mat-chip,
+.mat-chip.mat-standard-chip {
+  min-height: 26px;
+  font-size: 13px;
+  line-height: 15px;
+  font-weight: 500;
+
+  mat-icon {
+    font-size: 14px;
+    height: 14px;
+    width: 14px;
+    margin-right: 0.3em;
+  }
+
+  mat-spinner {
+    margin-right: 0.3em;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: mat.get-color-from-palette(c.$foreground, text-light);
+    padding-left: 0.4em;
+  }
+}
+
+a:any-link .mat-chip,
+a:any-link .mat-standard-chip {
+  cursor: inherit;
+}
+
+.green-chip,
+.mat-chip.green-chip {
+  background-color: mat.get-color-from-palette(c.$foreground, success-light);
+  color: mat.get-color-from-palette(c.$foreground, text);
+}
+
+.yellow-chip,
+.mat-chip.yellow-chip {
+  background-color: mat.get-color-from-palette(c.$foreground, in-progress);
+  color: mat.get-color-from-palette(c.$foreground, text);
+}
+
+.red-chip,
+.mat-chip.red-chip {
+  background-color: mat.get-color-from-palette(c.$foreground, danger-light);
+  color: white;
+}
+
+.dark-chip,
+.mat-chip.dark-chip {
+  background-color: mat.get-color-from-palette(c.$foreground, divider);
+  color: white;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-disabled {
+  opacity: initial;
+}
+
+mat-option {
+  .two-line-option-title {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .two-line-option-subtitle {
+    font-size: 11px;
+    line-height: 1;
+    color: mat.get-color-from-palette(c.$foreground, text-light);
+  }
+}
+
+// Stretch checkboxes in mat-menu to the full width.
+.mat-menu-content mat-checkbox {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.viz-hidden {
+  visibility: hidden;
+}
+
+.inline-chip {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-sizing: border-box;
+  display: inline-flex;
+  padding: 0 8px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.material-icons,
+.material-icons-outlined {
+  user-select: none;
+}
+
+.key-value-table {
+  td:first-of-type {
+    min-width: 10em;
+    vertical-align: top;
+    color: mat.get-color-from-palette(c.$foreground, text-light);
+  }
+
+  td:last-of-type {
+    width: 100%;
+    font-weight: 500;
+
+    app-copy-button {
+      max-width: 100%;
+
+      span {
+        display: inline-block;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+        overflow: hidden;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  td {
+    white-space: nowrap;
+  }
+}
+
+.result-table {
+  border-color: mat.get-color-from-palette(c.$foreground, divider-light);
+  color: mat.get-color-from-palette(c.$foreground, text-light);
+  font-size: 14px;
+  width: 100%;
+
+  .mat-header-cell {
+    border-bottom: none;
+    font-weight: 500;
+    font-size: inherit;
+  }
+
+  .mat-cell,
+  .mat-header-cell {
+    padding: 0.5em 0.25em;
+
+    &:last-of-type {
+      padding-right: 24px;
+    }
+
+    &:first-of-type {
+      padding-left: 24px;
+    }
+  }
+
+  .mat-row:last-child .mat-cell,
+  tr:last-child .mat-cell {
+    border-bottom: none;
+  }
+
+  .path {
+    word-break: break-word;
+    min-width: 200px;
+    width: 30%;
+
+    .copy-button {
+      font-size: 16px;
+      visibility: hidden;
+
+      line-height: 18px;
+      height: 18px;
+      width: 18px;
+    }
+
+    &:hover .copy-button {
+      visibility: visible;
+    }
+  }
+
+  .mat-cell > mat-icon,
+  td > mat-icon {
+    font-size: 16px;
+  }
+
+  .number {
+    white-space: nowrap;
+    width: 10%;
+  }
+
+  .timestamp {
+    width: 10%;
+  }
+
+  .centered {
+    text-align: center;
+  }
+}
+
+flow-details app-flow-args-view {
+  button,
+  .mat-button,
+  .mat-icon-button,
+  .mat-stroked-button,
+  .mat-flat-button
+    .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-prefix
+    .mat-icon-button,
+  .mat-form-field:not(.mat-form-field-appearance-legacy)
+    .mat-form-field-suffix
+    .mat-icon-button {
+    display: none;
+  }
+}
+
+.mat-tree {
+  background: none;
+}
+
+.card {
+  border-radius: 8px;
+  border: 1px solid mat.get-color-from-palette(c.$foreground, divider-light);
+  background: white;
+  margin-top: c.$card-margin;
+  padding: 14px 30px;
+  color: mat.get-color-from-palette(mat.$grey-palette, 800);
+
+  .header {
+    display: flex;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+// Cards with dividers should not have the padding set, so dividers meet the
+// borders.
+.split-card {
+  @extend .card;
+  padding: 0;
+}
+
+.centered-content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: c.$centered-content-max-width;
+  width: c.$centered-content-width;
+}
+
+/** List of items with vertical spacing and horizontally centered. */
+.content-list {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  row-gap: c.$page-spacing;
+  align-items: center;
+
+  & > * {
+    /* Prevent child padding overlapping outside of 100% width. */
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.mat-menu-item .mat-icon.mat-icon-inline {
+  width: 24px;
+  margin-right: 0;
+}
+
+mat-chip-list .mat-button {
+  border-radius: 2em;
+  line-height: 26px;
+  padding: 0 12px 0 6px;
+}
